@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo · Pirobioma del Maule</title>
+<meta name="description" content="Catálogo de 139 bacterias y hongos cultivables aislados de suelos quemados de la Región del Maule, con fotos, taxonomía y secuencias.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/sitio.css">
+<style>
+  .cat-cabecera { background: var(--grafito); color: var(--blanco); padding: 48px 0 0; }
+  .cat-cabecera h1 { font-size: clamp(38px, 5vw, 60px); letter-spacing: -0.03em; }
+  .cat-cabecera p { font-size: 18px; color: rgba(255,255,255,0.78); max-width: 60ch; margin-top: 12px; }
+
+  .tipos { display: flex; gap: 6px; margin-top: 32px; flex-wrap: wrap; }
+  .tipo-btn {
+    font-family: var(--f-display); font-size: 17px; font-weight: 600;
+    background: transparent; color: rgba(255,255,255,0.72);
+    border: none; border-radius: 10px 10px 0 0;
+    padding: 14px 22px 16px; cursor: pointer;
+    display: flex; align-items: baseline; gap: 8px;
+  }
+  .tipo-btn:hover { color: var(--blanco); background: rgba(255,255,255,0.06); }
+  .tipo-btn.activo { background: var(--ceniza); color: var(--tinta); }
+  .tipo-btn .n { font-size: 13px; font-weight: 500; opacity: 0.7; }
+  .tipo-btn .punto { width: 10px; height: 10px; border-radius: 50%; display: inline-block; align-self: center; }
+  .punto-hongo { background: var(--carmin); }
+  .punto-bact { background: var(--brasa); }
+  .punto-todo { background: linear-gradient(90deg, var(--carmin) 50%, var(--brasa) 50%); }
+
+  .filtros {
+    background: var(--ceniza);
+    position: sticky; top: 76px; z-index: 20;
+    border-bottom: 1px solid var(--linea);
+  }
+  .filtros .contenedor { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding-top: 14px; padding-bottom: 14px; }
+  .filtros input, .filtros select {
+    height: 40px; font-family: var(--f-display); font-size: 15px;
+    border: 1px solid rgba(0,0,0,0.2); border-radius: 8px;
+    background: var(--blanco); color: var(--tinta); padding: 0 12px;
+  }
+  .filtros input { flex: 1 1 220px; max-width: 320px; }
+  .filtros select { flex: 0 1 auto; }
+  .conteo { margin-left: auto; font-family: var(--f-display); font-size: 15px; color: var(--tinta-2); white-space: nowrap; }
+
+  .grilla {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 18px; padding-top: 28px; padding-bottom: 72px;
+  }
+  .tarjeta {
+    background: var(--blanco); border-radius: 12px; overflow: hidden;
+    cursor: pointer; text-align: left; border: 1px solid var(--linea);
+    font: inherit; color: inherit; display: block; width: 100%;
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .tarjeta:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0,0,0,0.10); }
+  .tarjeta .img { aspect-ratio: 1; background: var(--grafito); overflow: hidden; }
+  .tarjeta .img img { width: 100%; height: 100%; object-fit: cover; }
+  .tarjeta .cuerpo { padding: 10px 12px 14px; }
+  .tarjeta .id { font-family: var(--f-display); font-size: 13px; font-weight: 600; color: var(--tinta-2); display: flex; align-items: center; gap: 6px; }
+  .tarjeta .nombre { font-style: italic; font-size: 16px; line-height: 1.3; margin-top: 3px; }
+  .crec { display: flex; gap: 3px; margin-top: 9px; align-items: center; }
+  .crec span { width: 9px; height: 9px; border-radius: 50%; background: var(--ceniza-2); }
+  .crec span.on { background: var(--grafito); }
+  .crec-pend { font-family: var(--f-display); font-size: 12px; color: var(--piedra); margin-top: 9px; }
+  .sin-resultados { grid-column: 1 / -1; text-align: center; padding: 64px 0; font-family: var(--f-display); color: var(--tinta-2); }
+
+  /* Ficha */
+  .velo { display: none; position: fixed; inset: 0; background: rgba(20,20,22,0.7); z-index: 100; overflow-y: auto; padding: 32px 16px; }
+  .velo.abierto { display: flex; justify-content: center; align-items: flex-start; }
+  .ficha { background: var(--blanco); border-radius: 14px; width: 100%; max-width: 820px; overflow: hidden; }
+  .ficha-cab { background: var(--grafito); color: var(--blanco); padding: 20px 24px; display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; position: sticky; top: 0; }
+  .ficha-cab h2 { font-family: var(--f-texto); font-style: italic; font-weight: 400; font-size: 26px; line-height: 1.2; }
+  .ficha-cab p { font-family: var(--f-display); font-size: 14px; color: rgba(255,255,255,0.7); margin-top: 4px; }
+  .cerrar { background: none; border: 1px solid rgba(255,255,255,0.3); color: var(--blanco); border-radius: 8px; font-family: var(--f-display); font-size: 14px; padding: 6px 12px; cursor: pointer; flex-shrink: 0; }
+  .ficha-cuerpo { padding: 24px; }
+  .fotos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .fotos.una { grid-template-columns: minmax(0, 300px); justify-content: center; }
+  .foto-caja { aspect-ratio: 1; border-radius: 10px; overflow: hidden; background: var(--ceniza); display: flex; align-items: center; justify-content: center; }
+  .foto-caja img { width: 100%; height: 100%; object-fit: cover; cursor: zoom-in; }
+  .foto-caja .pend { font-family: var(--f-display); font-size: 13px; color: var(--piedra); }
+  .foto-rot { font-family: var(--f-display); font-size: 14px; text-align: center; margin-top: 6px; color: var(--tinta-2); }
+  .datos { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--linea); border: 1px solid var(--linea); border-radius: 10px; overflow: hidden; }
+  .dato { background: var(--blanco); padding: 12px 14px; }
+  .dato.ancho { grid-column: 1 / -1; }
+  .dato dt { font-family: var(--f-display); font-size: 13px; color: var(--tinta-2); margin-bottom: 3px; }
+  .dato dd { font-size: 16px; line-height: 1.5; }
+  .dato dd.it { font-style: italic; }
+  .dato dd.pendiente { color: var(--piedra); font-style: italic; }
+  .adn { font-family: ui-monospace, Consolas, monospace; font-size: 12px; word-break: break-all; line-height: 1.5; max-height: 160px; overflow-y: auto; }
+  .crec-grande { display: flex; gap: 5px; align-items: center; }
+  .crec-grande span { width: 14px; height: 14px; border-radius: 50%; background: var(--ceniza-2); }
+  .crec-grande span.on { background: var(--grafito); }
+  .crec-grande b { font-weight: 400; margin-left: 8px; font-size: 15px; }
+
+  .zoom { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 200; align-items: center; justify-content: center; padding: 20px; cursor: zoom-out; }
+  .zoom.abierto { display: flex; }
+  .zoom img { max-width: 100%; max-height: 100%; border-radius: 8px; }
+
+  @media (max-width: 640px) {
+    .tipo-btn { padding: 12px 14px 14px; font-size: 15px; }
+    .filtros { top: 76px; }
+    .filtros select { flex: 1 1 45%; }
+    .grilla { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+    .fotos { grid-template-columns: 1fr 1fr; }
+    .datos { grid-template-columns: 1fr; }
+    .ficha-cuerpo { padding: 16px; }
+  }
+</style>
+</head>
+<body class="tema-fuego">
+
+<header class="sitio-header">
+  <div class="contenedor">
+    <a class="marca" href="index.html">
+      <img src="img/logo_pirobioma.png" alt="">
+      <span>Proyecto PiroBioma</span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menú</button>
+    <nav class="nav" id="nav" aria-label="Principal">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="proyecto.html">El proyecto</a></li>
+        <li><a href="bosque.html">El bosque maulino</a></li>
+        <li><a href="equipo.html">Equipo</a></li>
+        <li><a class="externo" href="https://www.integrativeecology.org" target="_blank" rel="noopener">CEI</a></li>
+        <li><a class="nav-cta" href="catalogo.html" aria-current="page">Catálogo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="cat-cabecera">
+    <div class="contenedor">
+      <h1>Catálogo de cepas</h1>
+      <p>Bacterias y hongos aislados en medio de cultivo con carbón desde suelos quemados de bosque nativo y plantaciones de <i>Pinus radiata</i>. Abre cualquier cepa para ver sus fotos, taxonomía y secuencia.</p>
+      <div class="tipos" role="tablist" aria-label="Tipo de organismo">
+        <button class="tipo-btn" data-tipo="Hongo" role="tab"><span class="punto punto-hongo"></span>Hongos <span class="n" id="n-hongo"></span></button>
+        <button class="tipo-btn" data-tipo="Bacteria" role="tab"><span class="punto punto-bact"></span>Bacterias <span class="n" id="n-bact"></span></button>
+        <button class="tipo-btn" data-tipo="" role="tab"><span class="punto punto-todo"></span>Todas <span class="n" id="n-todas"></span></button>
+      </div>
+    </div>
+  </section>
+
+  <div class="filtros">
+    <div class="contenedor">
+      <input type="search" id="buscar" placeholder="Buscar por nombre, código o género" aria-label="Buscar cepa">
+      <select id="f-origen" aria-label="Origen"><option value="">Todo origen</option></select>
+      <select id="f-quemado" aria-label="Condición de quemado"><option value="">Toda condición</option></select>
+      <select id="f-phylum" aria-label="Phylum"><option value="">Todo phylum</option></select>
+      <span class="conteo" id="conteo"></span>
+    </div>
+  </div>
+
+  <div class="contenedor">
+    <div class="grilla" id="grilla"></div>
+  </div>
+</main>
+
+<div class="velo" id="velo" aria-hidden="true">
+  <article class="ficha" role="dialog" aria-modal="true" aria-labelledby="m-nombre">
+    <header class="ficha-cab">
+      <div><h2 id="m-nombre"></h2><p id="m-id"></p></div>
+      <button class="cerrar" id="cerrar">Cerrar</button>
+    </header>
+    <div class="ficha-cuerpo">
+      <div class="fotos" id="m-fotos"></div>
+      <dl class="datos">
+        <div class="dato"><dt>Tipo</dt><dd id="m-tipo"></dd></div>
+        <div class="dato"><dt>Origen</dt><dd id="m-origen"></dd></div>
+        <div class="dato"><dt>Horizonte</dt><dd id="m-horizonte"></dd></div>
+        <div class="dato"><dt>Condición de quemado</dt><dd id="m-quemado"></dd></div>
+        <div class="dato ancho"><dt>Taxonomía</dt><dd class="it" id="m-taxo"></dd></div>
+        <div class="dato ancho"><dt>Descripción morfológica</dt><dd id="m-desc"></dd></div>
+        <div class="dato ancho"><dt>Crecimiento en medio con carbón</dt><dd id="m-crec"></dd></div>
+        <div class="dato ancho"><dt>Secuencia de ADN (<span id="m-seqtipo"></span>)</dt><dd class="adn" id="m-seq"></dd></div>
+      </dl>
+    </div>
+  </article>
+</div>
+<div class="zoom" id="zoom"><img alt=""></div>
+
+<footer class="sitio-footer">
+  <div class="footer-logos">
+    <a href="https://www.utalca.cl" target="_blank" rel="noopener"><img class="logo-utalca" src="img/logo_utalca.png" alt="Universidad de Talca"></a>
+    <a href="https://www.integrativeecology.org" target="_blank" rel="noopener"><img class="logo-cei" src="img/logo_cei.png" alt="Centro de Ecología Integrativa"></a>
+    <a href="https://anid.cl" target="_blank" rel="noopener"><img class="logo-anid" src="img/logo_anid.png" alt="ANID, Ministerio de Ciencia"></a>
+  </div>
+  <div class="footer-texto">
+    Pirobioma del Maule · Proyecto ANID FONDECYT de Iniciación N° 11240628<br>
+    Centro de Ecología Integrativa, Universidad de Talca · Contacto: <a href="mailto:ian.acuna@utalca.cl">ian.acuna@utalca.cl</a> · <a href="proyecto.html#agradecimientos">Agradecimientos</a>
+  </div>
+</footer>
+
+<script src="data/cepas.js"></script>
+<script src="js/sitio.js"></script>
+<script>
+const etiquetasCrec = ["", "Crece muy poco", "Crecimiento bajo", "Crecimiento moderado", "Crecimiento alto", "Crece abundantemente"];
+const $ = id => document.getElementById(id);
+const unicos = arr => [...new Set(arr.filter(Boolean))].sort();
+
+function poblar(id, valores) {
+  valores.forEach(v => { const o = document.createElement('option'); o.value = v; o.textContent = v; $(id).appendChild(o); });
+}
+poblar('f-origen', unicos(strains.map(s => s.origen)));
+poblar('f-quemado', unicos(strains.map(s => s.condicion_quemado)));
+poblar('f-phylum', unicos(strains.map(s => s.taxonomia.phylum)));
+$('n-hongo').textContent = strains.filter(s => s.tipo === 'Hongo').length;
+$('n-bact').textContent = strains.filter(s => s.tipo === 'Bacteria').length;
+$('n-todas').textContent = strains.length;
+
+let tipoActivo = 'Hongo';
+
+function puntos(n, clase) {
+  return [1,2,3,4,5].map(i => `<span class="${i <= n ? 'on' : ''}"></span>`).join('');
+}
+
+function dibujar(lista) {
+  const g = $('grilla');
+  $('conteo').textContent = lista.length + (lista.length === 1 ? ' cepa' : ' cepas');
+  if (!lista.length) { g.innerHTML = '<p class="sin-resultados">Ninguna cepa coincide con estos filtros. Prueba quitando alguno.</p>'; return; }
+  g.innerHTML = '';
+  lista.forEach(s => {
+    const b = document.createElement('button');
+    b.className = 'tarjeta';
+    b.type = 'button';
+    const img = s.thumb ? `<img src="${s.thumb}" loading="lazy" alt="">` : '';
+    const crec = s.crecimiento ? `<div class="crec" title="${etiquetasCrec[s.crecimiento]}">${puntos(s.crecimiento)}</div>` : `<div class="crec-pend">Crecimiento pendiente</div>`;
+    const punto = s.tipo === 'Hongo' ? 'punto-hongo' : 'punto-bact';
+    b.innerHTML = `<div class="img">${img}</div><div class="cuerpo"><div class="id"><span class="punto ${punto}"></span>${s.id}</div><div class="nombre">${s.nombre_display}</div>${crec}</div>`;
+    b.addEventListener('click', () => abrir(s));
+    g.appendChild(b);
+  });
+}
+
+function filtrar() {
+  const q = $('buscar').value.toLowerCase().trim();
+  const o = $('f-origen').value, c = $('f-quemado').value, p = $('f-phylum').value;
+  dibujar(strains.filter(s => {
+    if (tipoActivo && s.tipo !== tipoActivo) return false;
+    if (q) {
+      const t = (s.nombre_display + ' ' + s.id + ' ' + (s.taxonomia.genero || '') + ' ' + (s.taxonomia.especie || '')).toLowerCase();
+      if (!t.includes(q)) return false;
+    }
+    if (o && s.origen !== o) return false;
+    if (c && s.condicion_quemado !== c) return false;
+    if (p && s.taxonomia.phylum !== p) return false;
+    return true;
+  }));
+}
+
+function caja(src, rotulo) {
+  const dentro = src ? `<img src="${src}" alt="${rotulo}">` : `<span class="pend">Foto pendiente</span>`;
+  return `<div><div class="foto-caja">${dentro}</div><div class="foto-rot">${rotulo}</div></div>`;
+}
+
+function campo(id, valor) {
+  const el = $(id);
+  el.textContent = valor || 'Pendiente';
+  el.classList.toggle('pendiente', !valor);
+}
+
+let ultimoFoco = null;
+function abrir(s, sinHistorial) {
+  ultimoFoco = document.activeElement;
+  $('m-nombre').textContent = s.nombre_display;
+  $('m-id').textContent = s.id + (s.cod_numerico ? ' · código ' + s.cod_numerico : '');
+  const f = $('m-fotos');
+  if (s.tipo === 'Bacteria') {
+    f.className = 'fotos una';
+    f.innerHTML = caja(s.foto_tincion_web, 'Tinción de Gram');
+  } else {
+    f.className = 'fotos';
+    f.innerHTML = caja(s.foto_anverso_web, 'Anverso') + caja(s.foto_reverso_web, 'Reverso') + caja(s.foto_tincion_web, 'Tinción');
+  }
+  $('m-tipo').textContent = s.tipo;
+  $('m-origen').textContent = s.origen || '—';
+  $('m-horizonte').textContent = s.horizonte || '—';
+  $('m-quemado').textContent = s.condicion_quemado || '—';
+  $('m-taxo').textContent = s.taxonomia_str || 'Sin determinar';
+  campo('m-desc', s.descripcion);
+  campo('m-seq', s.secuencia);
+  $('m-seqtipo').textContent = s.seq_tipo || '—';
+  $('m-crec').innerHTML = s.crecimiento
+    ? `<div class="crec-grande">${puntos(s.crecimiento)}<b>${etiquetasCrec[s.crecimiento]}</b></div>`
+    : '<span class="pendiente">Pendiente de evaluar</span>';
+  $('velo').classList.add('abierto');
+  $('velo').setAttribute('aria-hidden', 'false');
+  $('velo').scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+  $('cerrar').focus();
+  if (!sinHistorial) history.replaceState(null, '', '#' + s.id);
+}
+
+function cerrar() {
+  $('velo').classList.remove('abierto');
+  $('velo').setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  history.replaceState(null, '', location.pathname);
+  if (ultimoFoco) ultimoFoco.focus();
+}
+
+$('cerrar').addEventListener('click', cerrar);
+$('velo').addEventListener('click', e => { if (e.target === $('velo')) cerrar(); });
+$('m-fotos').addEventListener('click', e => {
+  if (e.target.tagName === 'IMG') { $('zoom').querySelector('img').src = e.target.src; $('zoom').classList.add('abierto'); }
+});
+$('zoom').addEventListener('click', () => $('zoom').classList.remove('abierto'));
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  if ($('zoom').classList.contains('abierto')) $('zoom').classList.remove('abierto');
+  else if ($('velo').classList.contains('abierto')) cerrar();
+});
+
+['buscar', 'f-origen', 'f-quemado', 'f-phylum'].forEach(id => $(id).addEventListener('input', filtrar));
+document.querySelectorAll('.tipo-btn').forEach(b => b.addEventListener('click', () => {
+  tipoActivo = b.dataset.tipo;
+  document.querySelectorAll('.tipo-btn').forEach(x => { x.classList.toggle('activo', x === b); x.setAttribute('aria-selected', x === b); });
+  filtrar();
+}));
+
+// Enlace directo a una ficha: catalogo.html#H76
+const desdeEnlace = strains.find(s => s.id === decodeURIComponent(location.hash.slice(1)));
+if (desdeEnlace) tipoActivo = desdeEnlace.tipo;
+document.querySelector(`.tipo-btn[data-tipo="${tipoActivo}"]`).classList.add('activo');
+filtrar();
+if (desdeEnlace) abrir(desdeEnlace, true);
+</script>
+</body>
+</html>

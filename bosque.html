@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El bosque maulino · Pirobioma del Maule</title>
+<meta name="description" content="El bosque maulino: un bosque relicto de Chile central y su recuperación después de los incendios.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/sitio.css">
+<style>
+  .galeria { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }
+  .prosa-cuerpo .galeria figure { margin: 0; }
+  .prosa-cuerpo .galeria img { aspect-ratio: 4 / 5; object-fit: cover; border-radius: 8px; width: 100%; }
+  .galeria figure:first-child { grid-column: 1 / -1; }
+  .prosa-cuerpo .galeria figure:first-child img { aspect-ratio: 16 / 9; }
+</style>
+</head>
+<body class="tema-bosque">
+
+<header class="sitio-header">
+  <div class="contenedor">
+    <a class="marca" href="index.html">
+      <img src="img/logo_pirobioma.png" alt="">
+      <span>Proyecto PiroBioma</span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menú</button>
+    <nav class="nav" id="nav" aria-label="Principal">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="proyecto.html">El proyecto</a></li>
+        <li><a href="bosque.html" aria-current="page">El bosque maulino</a></li>
+        <li><a href="equipo.html">Equipo</a></li>
+        <li><a class="externo" href="https://www.integrativeecology.org" target="_blank" rel="noopener">CEI</a></li>
+        <li><a class="nav-cta" href="catalogo.html">Catálogo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="cabecera-pagina con-foto" style="background-image:url('img/terreno/pilen_nativo.jpg'); background-position: center 45%;">
+    <div class="contenedor">
+      <h1>El bosque maulino</h1>
+      <p>Un bosque relicto de la costa de Chile central, que hoy intenta volver a crecer entre plantaciones y cicatrices de fuego.</p>
+    </div>
+  </section>
+
+  <section class="prosa">
+    <div class="contenedor">
+      <article class="prosa-cuerpo">
+        <h2>Un bosque en el límite</h2>
+        <p>El bosque maulino es una formación relicta de la cordillera de la Costa de Chile central, entre los 35° y 37° de latitud sur, en el límite austral del clima mediterráneo. Lo componen árboles como el ruil (<i>Nothofagus alessandrii</i>), el hualo (<i>N. glauca</i>), el avellano (<i>Gevuina avellana</i>) y el peumo (<i>Cryptocarya alba</i>).</p>
+        <figure><img src="img/terreno/pilen.jpg" alt="Interior de bosque nativo en la Reserva El Secreto de Pilén" loading="lazy"><figcaption>Bosque nativo en la Reserva El Secreto de Pilén.</figcaption></figure>
+        <p>Pese a su pequeña extensión, alberga una gran diversidad y numerosas especies endémicas, y forma parte de uno de los puntos calientes de biodiversidad del planeta. El ruil, su especie más emblemática, está clasificado como En Peligro en la Lista Roja de la UICN.</p>
+
+        <h2>Fragmentado entre plantaciones</h2>
+        <p>Como casi todos los ecosistemas naturales de Chile central, el bosque maulino está muy fragmentado. Sus parches sobreviven dentro de una matriz de plantaciones forestales de pino (<i>Pinus radiata</i>) y eucalipto (<i>Eucalyptus globulus</i>), cuya expansión explica gran parte de la pérdida de bosque de las últimas décadas.</p>
+
+        <figure><img src="img/terreno/paisaje_maule.jpg" alt="Vista aérea de un paisaje del Maule con bosque nativo y plantaciones" loading="lazy"><figcaption>Un paisaje del Maule transformado: bosque nativo y plantaciones de pino.</figcaption></figure>
+
+        <h2>Fuego e invasión</h2>
+        <p>A esa presión se suman incendios cada vez más frecuentes e intensos, impulsados por el cambio climático y por el reemplazo de la vegetación nativa por especies exóticas inflamables. El bosque maulino había enfrentado incendios ocasionales, pero con tiempo suficiente entre uno y otro para recuperarse. Eso ya no ocurre.</p>
+        <p>Dos años después de los megaincendios de 2017, en los parches más quemados se contaban cerca de 7.000 plántulas de pino por hectárea, frente a unas 250 de ruil, que solo regeneraban donde el fuego había sido menos intenso (González et al. 2023). El riesgo es un ciclo en que el fuego favorece al pino y el pino favorece al fuego.</p>
+
+        <h2>La recuperación empieza bajo tierra</h2>
+        <p>Los hongos y bacterias del suelo ayudan a las plantas a obtener nutrientes y a establecerse. Cuando el fuego los elimina, los árboles nativos parecen perder ese apoyo, mientras que el pino casi no lo nota. Conocer qué microorganismos persisten en los suelos quemados es una pieza para ayudar a que el bosque nativo vuelva.</p>
+
+        <h2>Lo que vuelve a crecer</h2>
+        <p>Estas fotos son de un sector de bosque nativo de la Reserva El Secreto de Pilén que se quemó hace menos de un año.</p>
+        <div class="galeria">
+          <figure><img src="img/terreno/regeneracion.jpg" alt="Musgos y plantas rebrotando en suelo quemado" loading="lazy"><figcaption>Musgos y rebrotes sobre suelo quemado.</figcaption></figure>
+          <figure><img src="img/terreno/hongo5.jpg" alt="Hongos creciendo sobre un tronco carbonizado" loading="lazy"><figcaption>Hongos sobre un tronco carbonizado.</figcaption></figure>
+          <figure><img src="img/terreno/hongo2.jpg" alt="Pequeños hongos blancos sobre madera quemada" loading="lazy"></figure>
+          <figure><img src="img/terreno/hongo1.jpg" alt="Hongo anaranjado entre la vegetación que rebrota" loading="lazy"></figure>
+          <figure><img src="img/terreno/hongo4.jpg" alt="Hongos en la base de un tronco quemado" loading="lazy"></figure>
+        </div>
+      </article>
+
+      <aside class="aparte">
+        <h2>Sitios de muestreo</h2>
+        <ul>
+          <li>Reserva Los Ruiles</li>
+          <li>Reserva El Secreto de Pilén</li>
+          <li>Molco</li>
+          <li>Huaquén</li>
+          <li>Empedrado</li>
+          <li><a href="proyecto.html">Ver el diseño de muestreo</a></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<footer class="sitio-footer">
+  <div class="footer-logos">
+    <a href="https://www.utalca.cl" target="_blank" rel="noopener"><img class="logo-utalca" src="img/logo_utalca.png" alt="Universidad de Talca"></a>
+    <a href="https://www.integrativeecology.org" target="_blank" rel="noopener"><img class="logo-cei" src="img/logo_cei.png" alt="Centro de Ecología Integrativa"></a>
+    <a href="https://anid.cl" target="_blank" rel="noopener"><img class="logo-anid" src="img/logo_anid.png" alt="ANID, Ministerio de Ciencia"></a>
+  </div>
+  <div class="footer-texto">
+    Pirobioma del Maule · Proyecto ANID FONDECYT de Iniciación N° 11240628<br>
+    Centro de Ecología Integrativa, Universidad de Talca · Contacto: <a href="mailto:ian.acuna@utalca.cl">ian.acuna@utalca.cl</a> · <a href="proyecto.html#agradecimientos">Agradecimientos</a>
+  </div>
+</footer>
+
+<script src="js/sitio.js"></script>
+</body>
+</html>
