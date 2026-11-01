@@ -114,6 +114,13 @@
   .cifras .c-bact { color: #C25A14; }
   .cifras p i { font-family: var(--f-texto); font-weight: 400; }
 
+  /* ---------- Infografía ---------- */
+  .numeros { background: var(--grafito); color: var(--blanco); padding: 72px 0 64px; }
+  .numeros h2 { font-size: clamp(28px, 3.4vw, 40px); margin-bottom: 28px; }
+  .infografia { display: block; border-radius: 12px; overflow: hidden; box-shadow: 0 18px 44px rgba(0,0,0,0.4); }
+  .infografia img { width: 100%; height: auto; }
+  .nota-inf { font-family: var(--f-display); font-size: 14px; color: rgba(255,255,255,0.55); margin-top: 12px; }
+
   /* ---------- Cómo leer una ficha ---------- */
   .ficha-guia { background: var(--blanco); padding: 88px 0; border-top: 1px solid var(--linea); }
   .ficha-guia h2 { font-size: clamp(32px, 4vw, 48px); color: var(--grafito); max-width: 18ch; }
@@ -218,6 +225,17 @@
     <div class="contenedor">
       <img class="logo-grande" src="img/logo_pirobioma.png" alt="Logo del proyecto Pyro Biomes, Universidad de Talca">
       <p>El catálogo reúne <b>139 cepas</b> cultivadas en medios selectivos con carbón de madera quemada como única fuente de carbono: <b class="c-hongo">74 hongos</b> y <b class="c-bact">65 bacterias</b>, aisladas de suelos tanto de bosque nativo (de <i>Nothofagus alessandrii</i> y <i>N. glauca</i>) como de plantaciones de <i>Pinus radiata</i>, quemados en los megaincendios de 2017 y 2023.</p>
+    </div>
+  </section>
+
+  <section class="numeros">
+    <div class="contenedor">
+      <h2>El catálogo en números</h2>
+      <a class="infografia" href="img/infografia_pirobioma.jpg" target="_blank" rel="noopener">
+        <img src="img/infografia_pirobioma.jpg" loading="lazy" width="2400" height="1350"
+          alt="Infografía del catálogo: 139 cepas. 74 hongos, la mayoría Ascomycota (66); géneros más frecuentes Fusarium (27), Penicillium (21), Aspergillus (6), Purpureocillium (4) y Trichoderma (4). 65 bacterias, la mayoría Actinomycetota (46); géneros más frecuentes Pseudarthrobacter (13), Paenarthrobacter (13), Rhodococcus (12), Arthrobacter (7) y Enterobacter (5). Origen del suelo: hongos 51 de bosque nativo, 17 de plantación y 6 de setas; bacterias 38 de nativo y 27 de plantación. Condición de quemado: hongos 44 quemado joven, 24 quemado viejo y 6 de setas; bacterias 19 joven y 46 viejo.">
+      </a>
+      <p class="nota-inf">Toca la imagen para verla en tamaño completo.</p>
     </div>
   </section>
 
