@@ -92,6 +92,7 @@ em, i { font-style: italic; }
   font-family: var(--f-display); font-size: 15px; font-weight: 500;
   color: rgba(255,255,255,0.82);
   padding: 8px 12px; border-radius: 6px;
+  white-space: nowrap;
 }
 .nav a:hover { color: var(--blanco); background: rgba(255,255,255,0.08); }
 .nav a[aria-current="page"] { color: var(--blanco); box-shadow: inset 0 -2px 0 var(--acento); border-radius: 0; }
@@ -107,7 +108,7 @@ em, i { font-style: italic; }
   padding: 8px 14px; cursor: pointer;
 }
 
-@media (max-width: 940px) {
+@media (max-width: 1120px) {
   .nav-toggle { display: block; }
   .nav { position: absolute; top: 76px; left: 0; right: 0; background: var(--banda); display: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
   .nav.abierto { display: block; }

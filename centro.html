@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centro de Ecología Integrativa · Pirobioma del Maule</title>
+<meta name="description" content="El Centro de Ecología Integrativa de la Universidad de Talca, donde se desarrolla el proyecto Pirobioma.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/sitio.css">
+<style>
+  .centro-intro { padding: 64px 0 24px; }
+  .centro-intro .contenedor { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 360px); gap: 64px; align-items: start; }
+  .centro-logo { width: 170px; margin-bottom: 24px; }
+  .lema { font-family: var(--f-display); font-weight: 700; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.2; color: var(--coigue); max-width: 22ch; margin-bottom: 20px; }
+  .centro-intro p { margin-bottom: 16px; line-height: 1.7; max-width: 62ch; }
+  .temas { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 28px; list-style: none; padding: 0; }
+  .temas li { font-family: var(--f-display); font-size: 14px; background: var(--blanco); border: 1px solid var(--linea); border-radius: 999px; padding: 5px 12px; color: var(--coigue); }
+  .ilustracion { position: sticky; top: 100px; margin: 0; }
+  .ilustracion img { width: 100%; border-radius: 12px; box-shadow: 0 16px 40px rgba(38,63,43,0.18); }
+  .ilustracion figcaption { font-family: var(--f-display); font-size: 13px; color: var(--tinta-2); margin-top: 8px; }
+  .lineas { padding: 24px 0 88px; }
+  .lineas h2 { font-size: clamp(26px, 3vw, 34px); color: var(--coigue); margin-bottom: 24px; }
+  .lineas ol { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .lineas li { border-left: 4px solid #1F6E73; padding: 18px 20px; border-radius: 4px; }
+  .lineas li:nth-child(1) { background: #E3EEEA; }
+  .lineas li:nth-child(2) { background: #EDF0DC; }
+  .lineas li:nth-child(3) { background: #E1EBF1; }
+  .lineas li:nth-child(4) { background: #F3E3DA; }
+  .lineas .num { font-family: var(--f-display); font-weight: 700; font-size: 15px; color: #B8543A; }
+  .lineas h3 { font-size: 22px; color: #173F45; margin: 4px 0 6px; }
+  .lineas li p { font-family: var(--f-display); font-size: 15px; color: var(--tinta-2); }
+  .ir-cei { margin-top: 36px; }
+  @media (max-width: 860px) {
+    .centro-intro .contenedor { grid-template-columns: 1fr; gap: 36px; }
+    .ilustracion { position: static; max-width: 420px; }
+    .lineas ol { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body class="tema-bosque">
+
+<header class="sitio-header">
+  <div class="contenedor">
+    <a class="marca" href="index.html">
+      <img src="img/logo_pirobioma.png" alt="">
+      <span>Proyecto PiroBioma</span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menú</button>
+    <nav class="nav" id="nav" aria-label="Principal">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="proyecto.html">El proyecto</a></li>
+        <li><a href="bosque.html">El bosque maulino</a></li>
+        <li><a href="equipo.html">Equipo</a></li>
+        <li><a href="centro.html" aria-current="page">Ecología Integrativa</a></li>
+        <li><a class="nav-cta" href="catalogo.html">Catálogo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="cabecera-pagina">
+    <div class="contenedor">
+      <h1>Centro de Ecología Integrativa</h1>
+      <p>El centro de investigación de la Universidad de Talca donde se desarrolla el proyecto Pirobioma.</p>
+    </div>
+  </section>
+
+  <section class="centro-intro">
+    <div class="contenedor">
+      <div>
+        <img class="centro-logo" src="img/logo_cei.png" alt="Logo del Centro de Ecología Integrativa">
+        <p class="lema">Conectamos escalas modelando procesos ecológicos.</p>
+        <p>El Centro de Ecología Integrativa (CEI) de la Universidad de Talca reúne a investigadores, estudiantes y profesionales que estudian cómo funcionan los ecosistemas, desde los microorganismos del suelo y las moléculas hasta el paisaje y el clima.</p>
+        <p>Su trabajo combina terreno, laboratorio y modelación para entender procesos que ocurren a escalas muy distintas, y conectarlos entre sí.</p>
+        <ul class="temas" aria-label="Temas de investigación del CEI">
+          <li>Microbiomas</li><li>Microbiología ambiental</li><li>Ecología molecular</li><li>Ciclos biogeoquímicos</li><li>Ecofisiología vegetal</li><li>Invasiones biológicas</li><li>Cambio climático</li><li>Servicios ecosistémicos</li><li>Seguridad alimentaria</li><li>Astrobiología</li>
+        </ul>
+        <p>El proyecto Pirobioma se cruza con varias de estas líneas: los microbiomas del suelo, las invasiones biológicas y la ecología de las plantas después del fuego.</p>
+      </div>
+      <figure class="ilustracion">
+        <img src="img/centro/cei_ilustracion.jpg" alt="Ilustración de un paisaje que va de los suelos y raíces hasta las montañas, con los temas de investigación del CEI señalados en cada escala" loading="lazy">
+        <figcaption>Los temas del CEI, de los suelos al paisaje.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="lineas">
+    <div class="contenedor">
+      <h2>Líneas de investigación</h2>
+      <ol>
+        <li><span class="num">01</span><h3>Ecología microbiana</h3><p>Microorganismos e interacciones</p></li>
+        <li><span class="num">02</span><h3>Ecología y evolución vegetal</h3><p>Plantas, adaptación y agroecosistemas</p></li>
+        <li><span class="num">03</span><h3>Astroecología</h3><p>Vida en ambientes extremos</p></li>
+        <li><span class="num">04</span><h3>Socioecología</h3><p>Modelamiento del paisaje</p></li>
+      </ol>
+      <p class="ir-cei"><a class="boton boton-bosque" href="https://www.integrativeecology.org" target="_blank" rel="noopener">Visitar integrativeecology.org</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="sitio-footer">
+  <div class="footer-logos">
+    <a href="https://www.utalca.cl" target="_blank" rel="noopener"><img class="logo-utalca" src="img/logo_utalca.png" alt="Universidad de Talca"></a>
+    <a href="https://www.integrativeecology.org" target="_blank" rel="noopener"><img class="logo-cei" src="img/logo_cei.png" alt="Centro de Ecología Integrativa"></a>
+    <a href="https://anid.cl" target="_blank" rel="noopener"><img class="logo-anid" src="img/logo_anid.png" alt="ANID, Ministerio de Ciencia"></a>
+  </div>
+  <div class="footer-texto">
+    Pirobioma del Maule · Proyecto ANID FONDECYT de Iniciación N° 11240628<br>
+    Centro de Ecología Integrativa, Universidad de Talca · Contacto: <a href="mailto:ian.acuna@utalca.cl">ian.acuna@utalca.cl</a> · <a href="proyecto.html#agradecimientos">Agradecimientos</a>
+  </div>
+</footer>
+
+<script src="js/sitio.js"></script>
+</body>
+</html>
