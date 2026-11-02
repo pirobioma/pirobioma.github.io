@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team · Pirobioma del Maule</title>
+<meta name="description" content="The team behind the Pirobioma del Maule project, Universidad de Talca, Chile.">
+<link rel="canonical" href="https://pirobioma.github.io/en/team.html">
+<link rel="alternate" hreflang="es" href="https://pirobioma.github.io/equipo.html">
+<link rel="alternate" hreflang="en" href="https://pirobioma.github.io/en/team.html">
+<link rel="alternate" hreflang="x-default" href="https://pirobioma.github.io/equipo.html">
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pirobioma del Maule">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Team · Pirobioma del Maule">
+<meta property="og:description" content="The team behind the Pirobioma del Maule project, Universidad de Talca, Chile.">
+<meta property="og:url" content="https://pirobioma.github.io/en/team.html">
+<meta property="og:image" content="https://pirobioma.github.io/img/og_pirobioma.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/sitio.css">
+<style>
+  .personas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px 56px; padding: 72px 0 88px; }
+  .persona { display: grid; grid-template-columns: 148px 1fr; gap: 28px; align-items: start; }
+  .retrato {
+    width: 148px; aspect-ratio: 1; border-radius: 50%; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--f-display); font-weight: 700; font-size: 44px; color: var(--blanco);
+    box-shadow: 0 0 0 5px var(--blanco), 0 0 0 6px var(--linea);
+    background-size: cover; background-position: center;
+  }
+  .persona h2 { font-size: 26px; color: var(--coigue); }
+  .persona .rol { font-family: var(--f-display); font-weight: 600; font-size: 16px; color: var(--musgo); margin-top: 4px; }
+  .persona p { font-size: 17px; margin-top: 12px; color: var(--tinta-2); max-width: 44ch; }
+  .persona a { font-family: var(--f-display); font-size: 15px; color: var(--coigue); }
+  .persona.director { grid-column: 1 / -1; grid-template-columns: 200px 1fr; padding-bottom: 48px; border-bottom: 1px solid var(--linea); }
+  .persona.director .retrato { width: 200px; font-size: 60px; }
+  .persona.director h2 { font-size: 34px; }
+  .persona.director p { max-width: 60ch; }
+  .en-terreno { padding: 0 0 88px; }
+  .en-terreno .contenedor { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .en-terreno figure { margin: 0; }
+  .en-terreno .foto-ancha { grid-column: 1 / -1; }
+  .en-terreno img { width: 100%; border-radius: 10px; aspect-ratio: 3 / 2; object-fit: cover; }
+  .en-terreno .foto-ancha img { aspect-ratio: 16 / 7; object-position: center 40%; }
+  .en-terreno figcaption { font-family: var(--f-display); font-size: 14px; color: var(--tinta-2); margin-top: 8px; }
+  @media (max-width: 760px) {
+    .en-terreno .contenedor { grid-template-columns: 1fr; }
+    .personas { grid-template-columns: 1fr; gap: 40px; }
+    .persona, .persona.director { grid-template-columns: 96px 1fr; gap: 18px; }
+    .retrato, .persona.director .retrato { width: 96px; font-size: 30px; }
+    .persona.director h2 { font-size: 26px; }
+  }
+</style>
+</head>
+<body class="tema-bosque">
+
+<header class="sitio-header">
+  <div class="contenedor">
+    <a class="marca" href="index.html">
+      <img src="../img/logo_pirobioma.png" alt="">
+      <span>PiroBioma Project</span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="project.html">The project</a></li>
+        <li><a href="forest.html">The Maulino forest</a></li>
+        <li><a href="team.html" aria-current="page">Team</a></li>
+        <li><a href="centre.html">Integrative Ecology</a></li>
+        <li><a class="lang" href="../equipo.html" hreflang="es" lang="es" title="Versión en español">ES</a></li>
+        <li><a class="nav-cta" href="catalog.html">Catalogue</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="cabecera-pagina">
+    <div class="contenedor">
+      <h1>Team</h1>
+      <p>The people behind the research, from the field and sampling to the laboratory, the analyses and the publications.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="contenedor personas">
+      <div class="persona director">
+        <div class="retrato" style="background-color: var(--brasa); background-image:url('../img/equipo/ian_v2.jpg')"></div>
+        <div>
+          <h2>Dr Ian Acuña</h2>
+          <div class="rol">Principal investigator</div>
+          <p>Ecologist.</p>
+          <a href="mailto:ian.acuna@utalca.cl">ian.acuna@utalca.cl</a>
+        </div>
+      </div>
+      <div class="persona">
+        <div class="retrato" style="background-color: var(--carmin); background-image:url('../img/equipo/andrea.jpg')"></div>
+        <div>
+          <h2>Dr Andrea Barrera</h2>
+          <div class="rol">Co-investigator</div>
+          <p>Marine biologist and microbiologist.</p>
+        </div>
+      </div>
+      <div class="persona">
+        <div class="retrato" style="background-color: var(--violeta); background-image:url('../img/equipo/roberto.jpg')"></div>
+        <div>
+          <h2>Roberto Miño</h2>
+          <div class="rol">PhD candidate</div>
+          <p>Bioinformatician, specialist in molecular biology.</p>
+        </div>
+      </div>
+      <div class="persona">
+        <div class="retrato" style="background-color: #B8921C; background-image:url('../img/equipo/cristian.jpg')"></div>
+        <div>
+          <h2>Cristian Ascencio</h2>
+          <div class="rol">Biochemistry student</div>
+        </div>
+      </div>
+      <div class="persona">
+        <div class="retrato" style="background-color: var(--musgo); background-image:url('../img/equipo/mariajose.jpg')"></div>
+        <div>
+          <h2>María José Ramírez</h2>
+          <div class="rol">Technical assistant</div>
+          <p>Plant nursery and laboratory.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="en-terreno">
+    <div class="contenedor">
+      <figure class="foto-ancha"><img src="../img/terreno/equipo_pilen.jpg" alt="Part of the team next to the vehicle at El Secreto de Pilén Reserve" loading="lazy"><figcaption>Fieldwork at El Secreto de Pilén Reserve.</figcaption></figure>
+      <figure><img src="../img/terreno/lab.jpg" alt="Laboratory work with culture plates" loading="lazy"><figcaption>Isolating strains in the laboratory.</figcaption></figure>
+      <figure><img src="../img/terreno/cristian_terreno.jpg" alt="Soil sampling at a burned site" loading="lazy"><figcaption>Soil sampling at a burned site.</figcaption></figure>
+    </div>
+  </section>
+</main>
+
+<footer class="sitio-footer">
+  <div class="footer-logos">
+    <a href="https://www.utalca.cl" target="_blank" rel="noopener"><img class="logo-utalca" src="../img/logo.utal.26.png" alt="Universidad de Talca: Inspira, Innova, Impacta"></a>
+    <a href="https://www.integrativeecology.org" target="_blank" rel="noopener"><img class="logo-cei" src="../img/logo_cei.png" alt="Centro de Ecología Integrativa"></a>
+    <a href="https://anid.cl" target="_blank" rel="noopener"><img class="logo-anid" src="../img/logo_anid.png" alt="ANID, Chilean Ministry of Science"></a>
+  </div>
+  <div class="footer-texto">
+    Pirobioma del Maule · ANID FONDECYT Initiation Project No. 11240628<br>
+    Centre for Integrative Ecology, Universidad de Talca · Contact: <a href="mailto:ian.acuna@utalca.cl">ian.acuna@utalca.cl</a> · <a href="project.html#acknowledgements">Acknowledgements</a>
+  </div>
+</footer>
+
+<script src="../js/sitio.js"></script>
+</body>
+</html>

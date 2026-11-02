@@ -6,6 +6,16 @@
   btn.addEventListener('click', () => {
     const abierto = nav.classList.toggle('abierto');
     btn.setAttribute('aria-expanded', abierto ? 'true' : 'false');
-    btn.textContent = abierto ? 'Cerrar' : 'Menú';
+    var en = document.documentElement.lang === 'en';
+    btn.textContent = abierto ? (en ? 'Close' : 'Cerrar') : (en ? 'Menu' : 'Menú');
+  });
+})();
+
+// Selector de idioma: conserva el enlace a una ficha (#H76) al cambiar de idioma
+(function () {
+  var l = document.querySelector('.nav a.lang');
+  if (!l) return;
+  l.addEventListener('click', function () {
+    if (location.hash) l.setAttribute('href', l.getAttribute('href').split('#')[0] + location.hash);
   });
 })();

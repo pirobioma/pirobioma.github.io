@@ -140,12 +140,12 @@ em, i { font-style: italic; }
 .sitio-footer { background: var(--blanco); border-top: 1px solid var(--linea); margin-top: 0; }
 .footer-logos {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
-  gap: 28px 56px; padding: 36px var(--gutter) 28px;
+  gap: 32px 72px; padding: 44px var(--gutter) 34px;
 }
 .footer-logos a, .footer-logos span { display: block; }
-.footer-logos img { height: 58px; width: auto; }
-.footer-logos img.logo-utalca { height: 78px; }
-.footer-logos img.logo-anid { height: 62px; }
+.footer-logos img { height: 72px; width: auto; }
+.footer-logos img.logo-utalca { height: 96px; }
+.footer-logos img.logo-anid { height: 78px; }
 .footer-texto {
   border-top: 1px solid var(--linea);
   padding: 18px var(--gutter) 26px;
@@ -155,9 +155,9 @@ em, i { font-style: italic; }
 .footer-texto a { color: var(--tinta); }
 @media (max-width: 600px) {
   .footer-logos { gap: 22px 32px; }
-  .footer-logos img { height: 44px; }
-  .footer-logos img.logo-utalca { height: 52px; }
-  .footer-logos img.logo-anid { height: 48px; }
+  .footer-logos img { height: 55px; }
+  .footer-logos img.logo-utalca { height: 66px; }
+  .footer-logos img.logo-anid { height: 60px; }
 }
 
 /* ---------- Páginas de contenido (tema bosque) ---------- */
@@ -231,3 +231,8 @@ em, i { font-style: italic; }
 .prosa-cuerpo .referencias h2 { font-size: 17px; margin: 0 0 12px; color: var(--tinta-2); }
 .referencias ol { list-style: none; padding-left: 0; margin: 0; }
 .prosa-cuerpo .referencias li { font-family: var(--f-display); font-size: 13.5px; line-height: 1.5; color: var(--tinta-2); margin-bottom: 8px; padding-left: 1.6em; text-indent: -1.6em; }
+
+/* Selector de idioma */
+.nav a.lang { font-weight: 700; letter-spacing: 0.02em; border: 1px solid rgba(255,255,255,0.35); padding: 6px 10px; margin-left: 4px; }
+.nav a.lang:hover { border-color: var(--blanco); }
+@media (max-width: 1120px) { .nav a.lang { display: inline-block; margin: 6px 0 0; } }
