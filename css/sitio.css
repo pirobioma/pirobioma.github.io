@@ -236,3 +236,7 @@ em, i { font-style: italic; }
 .nav a.lang { font-weight: 700; letter-spacing: 0.02em; border: 1px solid rgba(255,255,255,0.35); padding: 6px 10px; margin-left: 4px; }
 .nav a.lang:hover { border-color: var(--blanco); }
 @media (max-width: 1120px) { .nav a.lang { display: inline-block; margin: 6px 0 0; } }
+
+/* Licencia de datos (CC BY-NC 4.0) */
+.licencia { font-size: 0.85em; line-height: 1.5; opacity: 0.78; margin-top: 0.9em; }
+.licencia a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
