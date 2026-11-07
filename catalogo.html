@@ -122,6 +122,34 @@
     .datos { grid-template-columns: 1fr; }
     .ficha-cuerpo { padding: 16px; }
   }
+  .cat-cabecera { position: relative; overflow: hidden; padding: 26px 0 0; }
+  .cat-cabecera .contenedor { position: relative; z-index: 1; }
+  .cab-fondo { position: absolute; top: 0; right: 0; width: min(48%, 640px); height: 100%; z-index: 0;
+    background: url("img/catalogo_pic.webp") center 35% / cover no-repeat; opacity: 0.92;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 45%), linear-gradient(to top, transparent 0%, #000 40%);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(to right, transparent 0%, #000 45%), linear-gradient(to top, transparent 0%, #000 40%);
+    mask-composite: intersect; }
+  .cab-texto { max-width: 56%; }
+  .cat-cabecera h1 { font-size: clamp(30px, 3.8vw, 46px); }
+  .cat-cabecera .cab-texto > p { font-size: 15px; max-width: 58ch; margin-top: 8px; }
+  .acciones { display: flex; flex-wrap: nowrap; gap: 8px; align-items: center; margin-top: 16px; font-size: 13px; }
+  .acciones .rotulo-d { color: rgba(255,255,255,0.7); margin-right: 2px; white-space: nowrap; }
+  .acciones a { color: var(--blanco); text-decoration: none; border: 1.2px solid rgba(255,255,255,0.7); border-radius: 999px; padding: 3px 11px; font-weight: 600; white-space: nowrap; }
+  .acciones a:hover { background: var(--brasa); border-color: var(--brasa); }
+  .enlaces-info { display: flex; gap: 16px; margin-top: 10px; font-size: 12.5px; }
+  .enlaces-info button { background: none; border: 0; padding: 0; color: rgba(255,255,255,0.72); font: inherit; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+  .enlaces-info button:hover { color: var(--brasa); }
+  .tipos { margin-top: 22px; }
+  dialog.info { position: fixed; inset: 0; margin: auto; height: fit-content; max-width: 560px; width: calc(100% - 32px); border: 0; border-radius: 14px; padding: 22px 24px; background: var(--grafito-2); color: var(--blanco); font-size: 14px; line-height: 1.55; box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
+  dialog.info::backdrop { background: rgba(0,0,0,0.55); }
+  dialog.info h3 { margin: 0 0 10px; font-size: 18px; }
+  dialog.info a { color: inherit; text-decoration: underline; }
+  dialog.info .cita { background: rgba(255,255,255,0.07); border-radius: 8px; padding: 10px 12px; margin: 10px 0; }
+  dialog.info .botonera { display: flex; gap: 8px; justify-content: flex-end; margin-top: 14px; }
+  dialog.info .botonera button { font: inherit; font-weight: 600; border-radius: 999px; padding: 5px 14px; cursor: pointer; border: 1.2px solid rgba(255,255,255,0.7); background: none; color: inherit; }
+  dialog.info .botonera button.prim { background: var(--brasa); border-color: var(--brasa); }
+  @media (max-width: 900px) { .cab-texto { max-width: none; } .cab-fondo { width: 100%; opacity: 0.22; } .acciones { flex-wrap: wrap; } }
 </style>
 </head>
 <body class="tema-fuego">
@@ -149,10 +177,22 @@
 
 <main>
   <section class="cat-cabecera">
+    <div class="cab-fondo" aria-hidden="true"></div>
     <div class="contenedor">
-      <h1>Catálogo de cepas</h1>
-      <p>Bacterias y hongos aislados en medio de cultivo con carbón desde suelos quemados de bosque nativo y plantaciones de <i>Pinus radiata</i>. Abre cualquier cepa para ver sus fotos, taxonomía y secuencia.</p>
-      <p class="licencia">Datos e imágenes del catálogo bajo licencia <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.es" target="_blank" rel="noopener license">CC BY-NC 4.0</a>: libres para uso no comercial citando al Proyecto Pirobioma del Maule (FONDECYT 11240628). Para uso comercial, solicitar autorización a <a href="mailto:ian.acuna@utalca.cl">ian.acuna@utalca.cl</a>.</p>
+      <div class="cab-texto">
+        <h1>Catálogo de cepas</h1>
+        <p>Bacterias y hongos aislados en medio selectivo con materia orgánica quemada (carbón) como fuente de carbono. Abre cualquier cepa para ver sus fotos, taxonomía y secuencia. Los puntos bajo cada foto indican su crecimiento relativo en medio con carbón (escala de 1 a 5).</p>
+        <div class="acciones">
+          <span class="rotulo-d">Descargar:</span>
+          <a href="descargas/pirobioma_catalogo.xlsx" download>Excel (.xlsx)</a>
+          <a href="descargas/pirobioma_sequences.fasta" download>Secuencias (FASTA)</a>
+          <a href="https://doi.org/10.5281/zenodo.24043371" target="_blank" rel="noopener">Zenodo · DOI</a>
+        </div>
+        <div class="enlaces-info">
+          <button type="button" data-dlg="dlg-licencia">Licencia CC BY-NC 4.0</button>
+          <button type="button" data-dlg="dlg-cita">Para citar este trabajo</button>
+        </div>
+      </div>
       <div class="tipos" role="tablist" aria-label="Tipo de organismo">
         <button class="tipo-btn" data-tipo="Hongo" role="tab"><span class="punto punto-hongo"></span>Hongos <span class="n" id="n-hongo"></span></button>
         <button class="tipo-btn" data-tipo="Bacteria" role="tab"><span class="punto punto-bact"></span>Bacterias <span class="n" id="n-bact"></span></button>
@@ -344,6 +384,30 @@ if (desdeEnlace) tipoActivo = desdeEnlace.tipo;
 document.querySelector(`.tipo-btn[data-tipo="${tipoActivo}"]`).classList.add('activo');
 filtrar();
 if (desdeEnlace) abrir(desdeEnlace, true);
+</script>
+
+<dialog class="info" id="dlg-licencia">
+  <h3>Licencia</h3>
+  <p>Los datos e imágenes del catálogo están bajo licencia <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.es" target="_blank" rel="noopener license">Creative Commons Atribución-NoComercial 4.0 (CC BY-NC 4.0)</a>: son libres para uso no comercial, citando al Proyecto Pirobioma del Maule (FONDECYT 11240628). Para uso comercial, solicita autorización a <a href="mailto:ian.acuna@utalca.cl">ian.acuna@utalca.cl</a>.</p>
+  <div class="botonera"><button type="button" class="cerrar">Cerrar</button></div>
+</dialog>
+<dialog class="info" id="dlg-cita">
+  <h3>Para citar este trabajo</h3>
+  <div class="cita" id="txt-cita">Acuña-Rodríguez IS, Ascencio Astudillo C, Barrera Valenzuela A &amp; Miño R (2026) El Pirobioma de la Región del Maule: cepario de hongos y bacterias pirófilos (FONDECYT 11240628). Centro de Ecología Integrativa, Universidad de Talca. Zenodo. <a href="https://doi.org/10.5281/zenodo.24043371" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.24043371</a></div>
+  <p style="opacity:.7;font-size:12.5px">Este DOI apunta siempre a la versión más reciente del conjunto de datos.</p>
+  <div class="botonera"><button type="button" class="prim" id="btn-copiar">Copiar cita</button><button type="button" class="cerrar">Cerrar</button></div>
+</dialog>
+<script>
+document.querySelectorAll('[data-dlg]').forEach(function (b) {
+  b.addEventListener('click', function () { document.getElementById(b.dataset.dlg).showModal(); });
+});
+document.querySelectorAll('dialog.info').forEach(function (d) {
+  d.addEventListener('click', function (e) { if (e.target === d || e.target.classList.contains('cerrar')) d.close(); });
+});
+document.getElementById('btn-copiar').addEventListener('click', function () {
+  var t = document.getElementById('txt-cita').innerText, btn = this;
+  try { navigator.clipboard.writeText(t).then(function () { btn.textContent = '¡Copiada!'; setTimeout(function () { btn.textContent = 'Copiar cita'; }, 1800); }); } catch (e) {}
+});
 </script>
 </body>
 </html>
